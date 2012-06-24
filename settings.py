@@ -1,4 +1,7 @@
 # app-wide production settings can go in this file
+MONGO_HOST = "localhost"
+MONGO_PORT = 27017
+MONGO_DATABASE = "fastco"
 
 try:
     # use localsettings.py to create development settings
