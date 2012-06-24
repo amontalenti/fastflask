@@ -2,6 +2,8 @@
 MONGO_HOST = "localhost"
 MONGO_PORT = 27017
 MONGO_DATABASE = "fastco"
+STATIC = "/static"
+MIN = ""
 
 try:
     # use localsettings.py to create development settings
