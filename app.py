@@ -1,7 +1,8 @@
-from flask import (Flask, render_template, request, url_for)
+from flask import (Flask, render_template, request, url_for, make_response)
 from fastco import (query_articles, search_articles, insert_article,
                     validate_submission, InvalidSubmission)
 from settings import (STATIC, MIN)
+import json
 
 app = Flask(__name__)
 
@@ -79,6 +80,19 @@ def do_submit():
                            articles=[article],
                            page_type="success",
                            **opts)
+
+@app.route('/articles.json')
+def articles_json():
+    # fetch articles
+    articles = query_articles()
+    # convert into dictionaries
+    records = [vars(article) for article in articles]
+    # dump list of dictionaries as JSON
+    resp = json.dumps(records)
+    # make a JSON HTTP response
+    resp = make_response(resp)
+    resp.headers["Content-Type"] = "application/json"
+    return resp
 
 def run_devserver():
     app.run(debug=True)

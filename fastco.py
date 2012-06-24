@@ -13,7 +13,7 @@ class Article(object):
         self.pub_date = pub_date
         if _id is not None:
             # just helps with MongoDB
-            self._id = None
+            self._id = str(_id)
 
     @property
     def html_link(self):
