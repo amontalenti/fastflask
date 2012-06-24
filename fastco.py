@@ -81,11 +81,13 @@ def validate_submission(params):
     def err(id, msg):
         errors[id] = msg
     title = params["title"]
+    title = title.strip()
     if len(title) < 2:
         err("title", "title must be > 2 characters")
     if len(title) > 150:
         err("title", "title may not be > 150 characters")
     link = params["link"]
+    link = link.strip()
     try:
         opened = urlopen(link)
         link = opened.geturl()
@@ -93,11 +95,15 @@ def validate_submission(params):
         err("link", "link could not be reached")
     # return normalized URL after following redirects
     pub_date = params["pub_date"]
-    try:
-        pub_date = date_parser.parse(pub_date)
-        pub_date = pub_date.strftime("%Y-%m-%dT%H:%M:%SZ")
-    except ValueError:
-        err("pub_date", "publication date could not parse")
+    pub_date = pub_date.strip()
+    if len(pub_date) == 0:
+        err("pub_date", "publication date cannot be blank")
+    else:
+        try:
+            pub_date = date_parser.parse(pub_date)
+            pub_date = pub_date.strftime("%Y-%m-%dT%H:%M:%SZ")
+        except ValueError:
+            err("pub_date", "publication date could not parse")
     # if any errors, raise exception
     if len(errors) > 0:
         raise InvalidSubmission(errors=errors)

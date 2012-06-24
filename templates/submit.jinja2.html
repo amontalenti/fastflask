@@ -12,13 +12,13 @@
     {% endif -%}
 {% endmacro -%}
 
-{% macro input(name, desc, value, type='text') -%}
+{% macro input(name, desc, type='text') -%}
     <div class="control-group {{ error(name) }}">
         <label class="control-label" for="{{ name }}">{{ desc }}</label>
         <div class="controls">
             <input  type="{{ type }}" 
                     name="{{ name }}" id="{{ name }}" 
-                    value="{{ value }}">
+                    value="{{ request.form[name] }}">
             {{ errorhelp(name) }}
         </div>
     </div>
@@ -37,9 +37,9 @@
 
     <form class="form-horizontal" method="POST">
         <fieldset>
-            {{ input("title", "Title", request.form.title) }}
-            {{ input("link", "Link", request.form.link) }}
-            {{ input("pub_date", "Date Published", request.form.pub_date) }}
+            {{ input("title", "Title") }}
+            {{ input("link", "Link") }}
+            {{ input("pub_date", "Date Published") }}
             <div class="form-actions">
                 {{ button("Submit", active=True) }}
                 {{ button("Cancel", goto="/") }}
