@@ -132,9 +132,9 @@ install -r dev-reqs.txt`` and then run ``nosetests``.
 Screenshots
 -----------
 
-* List
-* Search
-* Submit
+* List_
+* Search_
+* Submit_
 
 .. _List: https://github.com/amontalenti/fastflask/tree/master/screenshots/list.png
 .. _Search: https://github.com/amontalenti/fastflask/tree/master/screenshots/search.png
