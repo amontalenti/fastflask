@@ -1,0 +1,42 @@
+{% extends "base.jinja2.html" %}
+
+{% block content %}
+
+    {% if page_type == "listing" %}
+
+        <h2>Latest Articles</h2>
+
+    {% elif page_type == "search" %}
+
+        <h2>Search Results</h2>
+        <p>Showing articles matching <code>{{ query }}</code></p>
+
+    {% elif page_type == "since" %}
+
+        <h2>Articles in Last {{ days_ago }} Days</h2>
+
+    {% elif page_type == "success" %}
+    
+        <h2>Successful submission!</h2>
+
+    {% endif %}
+
+        <table class="table table-bordered table-striped">
+            <thead>
+                <tr>
+                    <th>Title</th>
+                    <th>Age</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for article in articles %}
+                <tr>
+                    <td>{{ article.html_link }}</td>
+                    <td>
+                        <a href="/since/{{ article.days_old }}">
+                            {{ article.readable_days_old }}</a></td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+{% endblock %}

@@ -1,0 +1,48 @@
+{% extends "base.jinja2.html" %}
+
+{% macro error(name) -%}
+    {% if errors and errors[name] -%}
+        error
+    {% endif -%}
+{% endmacro -%}
+
+{% macro errorhelp(name) -%}
+    {% if errors and errors[name] -%}
+        <span class="help-inline">{{ errors[name] }}</span>
+    {% endif -%}
+{% endmacro -%}
+
+{% macro input(name, desc, value, type='text') -%}
+    <div class="control-group {{ error(name) }}">
+        <label class="control-label" for="{{ name }}">{{ desc }}</label>
+        <div class="controls">
+            <input  type="{{ type }}" 
+                    name="{{ name }}" id="{{ name }}" 
+                    value="{{ value }}">
+            {{ errorhelp(name) }}
+        </div>
+    </div>
+{%- endmacro %}
+
+{% macro button(name, active=False, goto="") -%}
+    {% if active %}
+        <button type="submit" class="btn btn-primary">{{ name }}</button>
+    {% else %}
+        <a href="{{ goto }}"><button class="btn">{{ name }}</button></a>
+    {% endif %}
+{%- endmacro %}
+
+{% block content %}
+    <h2>Submit a new article!</h2>
+
+    <form class="form-horizontal" method="POST">
+        <fieldset>
+            {{ input("title", "Title", request.form.title) }}
+            {{ input("link", "Link", request.form.link) }}
+            {{ input("pub_date", "Date Published", request.form.pub_date) }}
+            <div class="form-actions">
+                {{ button("Submit", active=True) }}
+                {{ button("Cancel", goto="/") }}
+        </fieldset>
+    </form>
+{% endblock %}
