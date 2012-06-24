@@ -29,6 +29,18 @@ project that you can clone and get started with quickly. I plan to use it as a
 teaching tool -- in other words, this is how small a modern web application can
 be if you pick some lightweight technologies.
 
+Screenshots
+-----------
+
+* List_
+* Search_
+* Submit_
+
+.. _List: https://github.com/amontalenti/fastflask/raw/master/screenshots/list.png
+.. _Search: https://github.com/amontalenti/fastflask/raw/master/screenshots/search.png
+.. _Submit: https://github.com/amontalenti/fastflask/raw/master/screenshots/submit.png
+
+
 What does it do?
 ----------------
 
@@ -129,21 +141,12 @@ Run ``python loaddata.py`` to load some sample article data into your MongoDB.
 If you want to run unit tests, install development dependencies with ``pip
 install -r dev-reqs.txt`` and then run ``nosetests``.
 
-Screenshots
------------
-
-* List_
-* Search_
-* Submit_
-
-.. _List: https://github.com/amontalenti/fastflask/raw/master/screenshots/list.png
-.. _Search: https://github.com/amontalenti/fastflask/raw/master/screenshots/search.png
-.. _Submit: https://github.com/amontalenti/fastflask/raw/master/screenshots/submit.png
-
 Settings
 --------
 
-Due to the technologies chosen and the conventions used, there are relatively few settings for this project. They are all listed in ``settings.py`` and described here:
+Due to the technologies chosen and the conventions used, there are relatively
+few settings for this project. They are all listed in ``settings.py`` and
+described here:
 
 MONGO_HOST, MONGO_PORT
     These are your Mongo database settings. The ones listed here are the
