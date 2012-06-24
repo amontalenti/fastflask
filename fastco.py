@@ -21,10 +21,20 @@ class Article(object):
         return Markup(link_fragment.format(**vars(self)))
 
     @property
-    def days_old(self):
+    def pub_datetime(self):
         if self.pub_date is not None:
-            pub_date = date_parser.parse(self.pub_date)
-            return (datetime.now(UTC) - pub_date).days
+            try:
+                pub_date = date_parser.parse(self.pub_date)
+            except ValueError:
+                pub_date = None
+            return pub_date
+        else:
+            return None
+
+    @property
+    def days_old(self):
+        if self.pub_datetime is not None:
+            return (datetime.now(UTC) - self.pub_datetime).days
         else:
             return None
 
