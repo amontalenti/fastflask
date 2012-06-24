@@ -53,6 +53,11 @@ def do_submit():
                                submit_active="active",
                                errors=errors,
                                **opts)
+    def success_page():
+        return render_template("list.jinja2.html", 
+                            articles=[article],
+                            page_type="success",
+                            **opts)
 
     # fetch parameters from form
     form = request.form
@@ -68,18 +73,10 @@ def do_submit():
     except InvalidSubmission as ex:
         return error_page(ex.errors)
 
-    # attempt insertion of article into DB
-    try:
-        insert_article(article)
-    except:
-        errors = {"form": "Failed to submit article; internal error"}
-        return error_page(errors)
+    insert_article(article)
 
     # all went well, render success page
-    return render_template("list.jinja2.html", 
-                           articles=[article],
-                           page_type="success",
-                           **opts)
+    return success_page()
 
 @app.route('/articles.json')
 def articles_json():
