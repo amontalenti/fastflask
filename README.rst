@@ -49,7 +49,20 @@ their publication date.
 Technical Design
 ----------------
 
-I chose this because the model is simple: we are simply modeling web articles.
+The layout of the project is very straightforward. The core logic of FastCo's
+backend is implemented in the Python module, ``fastco.py``. Some of this is
+database-independent logic, such as the ``Article`` class and its associated
+methods. There are also a few utility functions that make it easy to query the
+MongoDB and retrieve ``Article`` instances from it. Finally, there is important
+business logic such as the validation rules for valid article submissions.
+
+The Flask web application is entirely contained in ``app.py``. I have tried to make 
+this module focus entirely on the tasks of handling web requests. Thus, code related 
+to the DB, business logic, and the model are imported via the ``fastco`` module.
+
+I chose this problem space because the model is simple: we are simply modeling
+web articles.
+
 I chose to include publication date since showing real-world code using
 Python's datetime, dateutil, and pytz is instructive. I seeded some test data
 (in JSON format) from some publishers who post their content freely online, and
@@ -70,13 +83,29 @@ importantly, they are all implemented using the same template,
 ``list.jinja2.html``.
 
 As a result of this, there are only two Jinja templates total -- one for the
-listing interface and one for the submission form. The submission template is
-also re-used for both plain submission form display and the one that reports
-errors to the user.
+listing interface and one for the submission form. The submission template
+(``submit.jinja2.html``) is also re-used for both plain submission form display
+and the one that reports errors to the user. Both templates demonstrate
+template inheritance; the latter template also demonstrates re-use within a
+single template via macros.
 
 Both the article listing interface and the form are styled using Bootstrap.
 Most of the Bootstrap boilerplate is in a base Jinja template, thus leaving the
-actual templates to be very free of noise.
+actual templates to be very free of noise. All of the styling is achieved via 
+pure HTML and CSS.
+
+Running
+-------
+
+To setup the project, create a virtualenv and then ``pip install -r reqs.txt``
+into it.
+
+To run, execute ``python app.py`` and the Flask development server will come up.
+
+Run ``python loaddata.py`` to load some sample article data into your MongoDB.
+
+If you want to run unit tests, install development dependencies with ``pip
+install -r dev-reqs.txt`` and then run ``nosetests``.
 
 Settings
 --------
@@ -89,16 +118,21 @@ MONGO_HOST, MONGO_PORT
 
 MONGO_DATABASE
     This is the Mongo database that will be automatically created upon first
-    use and will contain a single collection, ``articles``, with all the data
-    being queried and inserted by this project. Defaults to ``fastco``.
+    use and will contain a single collection, ``"articles"``, with all the data
+    being queried and inserted by this project. Defaults to ``"fastco"``.
 
 STATIC
-    This is the static directory location. Defaults to ``/static`` which is
+    This is the static directory location. Defaults to ``"/static"`` which is
     what the Flask development web server uses, but this will likely need to be
     customized for a production deployment with e.g. nginx and uwsgi.
 
 MIN
     This is the "minified JavaScript/CSS" extension that is used for loading
     optimized forms of these assets. It is set to the empty string ``""`` by
-    default, set to ``.min`` and the minified versions will be used.
+    default, set to ``".min"`` and the minified versions will be used.
 
+You can customize this ``settings.py`` setup easily by changing the main file
+to have your production settings and changing ``localsettings.py``, a file you
+add to your own install, to have your development settings. The latter is
+automatically imported and any set configuration variables will override the
+former.
