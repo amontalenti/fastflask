@@ -136,9 +136,9 @@ Screenshots
 * Search_
 * Submit_
 
-.. _List: https://github.com/amontalenti/fastflask/tree/master/screenshots/list.png
-.. _Search: https://github.com/amontalenti/fastflask/tree/master/screenshots/search.png
-.. _Submit: https://github.com/amontalenti/fastflask/tree/master/screenshots/submit.png
+.. _List: https://github.com/amontalenti/fastflask/raw/master/screenshots/list.png
+.. _Search: https://github.com/amontalenti/fastflask/raw/master/screenshots/search.png
+.. _Submit: https://github.com/amontalenti/fastflask/raw/master/screenshots/submit.png
 
 Settings
 --------
