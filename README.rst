@@ -4,19 +4,19 @@ fastflask
 An example of using the Flask web framework for Python to build a web
 application prototype.
 
+Rationale
+---------
+
 This is the example application that goes with my `"Build a web app fast" blog
 post`_ and my `fast-python-slides`_.
 
 .. _"Build a web app fast" blog post: http://www.pixelmonkey.org/2012/06/14/web-app
 .. _fast-python-slides: https://github.com/amontalenti/fast-python-slides
 
-Rationale
----------
-
 I am increasingly finding myself surrounding by people who want to learn how to
 prototype web applications fast.
 
-I wrote a blog post giving some pointers to Python, JavaScript, and HTML/CSS
+In my blog post, I gave some pointers to Python, JavaScript, and HTML/CSS
 resources for getting started. I also pointed readers toward the "big three"
 Python web frameworks: Django, Tornado, and Flask. I suggested that for getting
 started and rapidly prototyping an application, Flask was the way to go.
@@ -43,8 +43,8 @@ Screenshots
 Quickstart
 ----------
 
-Assuming you have Python 2.7, setuptools, virtualenv, virtualenvwrapper, and
-git installed, follow these easy steps to set this project up::
+Assuming you have Python 2.7, setuptools, pip, virtualenv, virtualenvwrapper,
+and git installed, follow these easy steps to set this project up::
 
     git clone git@github.com:amontalenti/fastflask.git
     cd fastflask
@@ -52,7 +52,8 @@ git installed, follow these easy steps to set this project up::
     pip install -r reqs.txt
     pip install -r dev-reqs.txt
 
-You will also need MongoDB. Download the appopriate production release for your platform `MongoDB's download page`_.
+You will also need MongoDB. Download the appopriate production release for your
+platform `MongoDB's download page`_.
 
 .. _MongoDB's download page: http://www.mongodb.org/downloads
 
@@ -96,7 +97,8 @@ business logic such as the validation rules for valid article submissions.
 
 The Flask web application is entirely contained in ``app.py``. I have tried to make 
 this module focus entirely on the tasks of handling web requests. Thus, code related 
-to the DB, business logic, and the model are imported via the ``fastco`` module.
+to the DB, business logic, and the model are imported via the ``fastco`` module. And
+anything UI or display-related is implemented in the templates.
 
 I chose this problem space because the model is simple yet realistic: at
 `Parse.ly`_, we deal with an only-slightly-more complex model every day.
