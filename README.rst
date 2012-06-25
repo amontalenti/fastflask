@@ -65,6 +65,8 @@ these commands to start the application::
     # enter "y" at the prompt
     python app.py
 
+Then open your browser to http://localhost:5000/
+
 What does it do?
 ----------------
 
