@@ -40,6 +40,30 @@ Screenshots
 .. _Search: https://github.com/amontalenti/fastflask/raw/master/screenshots/search.png
 .. _Submit: https://github.com/amontalenti/fastflask/raw/master/screenshots/submit.png
 
+Quickstart
+----------
+
+Assuming you have Python 2.7, setuptools, virtualenv, virtualenvwrapper, and
+git installed, follow these easy steps to set this project up::
+
+    git clone git@github.com:amontalenti/fastflask.git
+    cd fastflask
+    mkvirtualenv fastflask
+    pip install -r reqs.txt
+    pip install -r dev-reqs.txt
+
+You will also need MongoDB. Download the appopriate production release for your platform `MongoDB's download page`_.
+
+.. _MongoDB's download page: http://www.mongodb.org/downloads
+
+Once MongoDB is installed and the above virtualenv is running, you can use
+these commands to start the application::
+
+    cd fastflask
+    workon fastflask
+    python loaddata.py
+    # enter "y" at the prompt
+    python app.py
 
 What does it do?
 ----------------
